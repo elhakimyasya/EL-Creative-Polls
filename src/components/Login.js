@@ -4,7 +4,6 @@ import { Link, browserHistory } from "react-router";
 import Helmet from "react-helmet";
 
 import RaisedButton from "material-ui/RaisedButton";
-import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
 import Paper from "material-ui/Paper";
 
@@ -57,43 +56,61 @@ class Login extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-sm-12 text-xs-center">
-          <Helmet title="Login" />
+        <div className="col-sm-4 text-center m-auto">
+          <Helmet title="Masuk" />
 
-          <Paper>
+          <Paper
+            style={{
+              borderRadius: "8px",
+              padding: "20px",
+            }}
+          >
+            <h4 className="card-title text-center mb-4 mt-1">Masuk</h4>
+            <hr/>
+            <div className="d-flex justify-content-center form_container">
+              <form onSubmit={this.handleSubmit}>
+                <div className="input-group">
+                  <div className="input-group-append">
+                    <TextField
+                      floatingLabelText="Email"
+                      value={this.state.email}
+                      onChange={this.handleEmailChange}
+                      errorText={this.state.emailError}
+                    />
+                  </div>
+                </div>
 
-            <h2>Login</h2>
+                <div className="input-group">
+                  <div className="input-group-append">
+                    <TextField
+                      floatingLabelText="Password"
+                      value={this.state.password}
+                      onChange={this.handlePasswordChange}
+                      type="password"
+                      errorText={this.state.passwordError}
+                    />
+                  </div>
+                </div>
 
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                floatingLabelText="Email"
-                value={this.state.email}
-                onChange={this.handleEmailChange}
-                errorText={this.state.emailError}
-              />
+                <div className="d-flex justify-content-center mt-3 login_container">
+                  <RaisedButton label="Masuk" type="submit" primary={true} />
+                </div>
+              </form>
+            </div>
 
-              <br />
-              <br />
-              <TextField
-                floatingLabelText="Password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-                type="password"
-                errorText={this.state.passwordError}
-              />
-
-              <br />
-              <br />
-              <RaisedButton label="Login" type="submit" primary={true} />
-            </form>
-
-            <br />
-            <Link to="/polls/recover">
-              <FlatButton label="Forgot your password?" />
-            </Link>
-
-            <br />
-            <br />
+            <div className="mt-4">
+              <div className="d-flex justify-content-center links">
+                Belum punya Akun?{" "}
+                <Link to="/polls/signup" className="ml-2">
+                  Daftar
+                </Link>
+              </div>
+              <div className="d-flex justify-content-center links">
+                <Link to="/polls/recover" className="ml-2">
+                  Lupa Password
+                </Link>
+              </div>
+            </div>
           </Paper>
         </div>
       </div>

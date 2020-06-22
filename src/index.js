@@ -15,7 +15,7 @@ import NotFound from './components/NotFound';
 
 import './index.css';
 
-// Needed for onTouchTap
+// Needed for onClick
 // http://stackoverflow.com/a/34015469/988941
 
 //A note on security: users can access data as explained in the use cases, but they can not modify data beyond that

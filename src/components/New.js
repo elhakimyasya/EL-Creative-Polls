@@ -1,196 +1,214 @@
-import React from 'react';
-import { firebaseApp } from '../utils/firebase';
-import { browserHistory } from 'react-router';
+import React from "react";
+import { firebaseApp } from "../utils/firebase";
+import { browserHistory } from "react-router";
 
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import Paper from 'material-ui/Paper';
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
+import Paper from "material-ui/Paper";
 import Helmet from "react-helmet";
+import { FlatButton } from "material-ui";
 
 class New extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            title: '',
-            titleError: '',
-            options: [
-                { option: '', optionError: '' },
-                { option: '', optionError: '' }
-            ]
-        };
+    this.state = {
+      title: "",
+      titleError: "",
+      options: [
+        { option: "", optionError: "" },
+        { option: "", optionError: "" },
+      ],
+    };
 
-        this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleAddOption = this.handleAddOption.bind(this);
-        this.formIsInvalid = this.formIsInvalid.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.formIsInvalid = this.formIsInvalid.bind(this);
+  }
+
+  handleTitleChange(e) {
+    this.setState({ title: e.target.value });
+  }
+
+  handleOptionChange(i, e) {
+    let options = this.state.options;
+    options[i].option = e.target.value;
+    this.setState({ options: options });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    if (this.formIsInvalid()) {
+      return;
     }
 
-    handleTitleChange(e) {
-        this.setState({ title: e.target.value });
-    }
+    //pollData has the form
+    // {
+    //     title: 'a title',
+    //     'a poll option': 0,
+    //     'a different poll option': 0
+    // }
 
-    handleOptionChange(i, e) {
-        let options = this.state.options;
-        options[i].option = e.target.value;
-        this.setState({ options: options });
-    }
+    const pollData = this.state.options.reduce(
+      (a, op) => {
+        const key = op.option.trim();
+        a[key] = 0;
+        return a;
+      },
+      { title: this.state.title.trim() }
+    );
 
-    handleSubmit(e) {
-        e.preventDefault();
+    //user ID
+    const uid = firebaseApp.auth().currentUser.uid;
 
-        if (this.formIsInvalid()) {
-            return;
-        }
+    // Get a key for a new Poll.
+    const newPollKey = firebaseApp.database().ref().child("polls").push().key;
 
-        //pollData has the form
-        // {
-        //     title: 'a title',
-        //     'a poll option': 0,
-        //     'a different poll option': 0
-        // }
+    // Write the new poll's data simultaneously in the polls list and the user's polls list.
+    var updates = {};
+    updates[`/polls/${newPollKey}`] = pollData;
+    updates[`/user-polls/${uid}/${newPollKey}`] = true;
 
-        const pollData = this.state.options.reduce((a, op) => {
-            const key = op.option.trim();
-            a[key] = 0;
-            return a;
-        }, { title: this.state.title.trim() })
+    firebaseApp.database().ref().update(updates);
 
-        //user ID
-        const uid = firebaseApp.auth().currentUser.uid;
+    browserHistory.push(`/polls/poll/${newPollKey}`);
+  }
 
-        // Get a key for a new Poll.
-        const newPollKey = firebaseApp.database().ref().child('polls').push().key;
+  handleAddOption() {
+    let options = this.state.options;
+    options.push({ option: "", optionError: "" });
 
-        // Write the new poll's data simultaneously in the polls list and the user's polls list.
-        var updates = {};
-        updates[`/polls/${newPollKey}`] = pollData;
-        updates[`/user-polls/${uid}/${newPollKey}`] = true;
+    this.setState({ options }); //es6 shorthand for { options: options }
+  }
 
-        firebaseApp.database().ref().update(updates);
+  render() {
+    let options = this.state.options.map((option, i) => {
+      return (
+        <div className="input-group">
+          <div className="input-group-append" key={i}>
+            <TextField
+              floatingLabelText={`Pilihan ${i + 1}`}
+              value={this.state.options[i].option}
+              onChange={this.handleOptionChange.bind(this, i)}
+              errorText={this.state.options[i].optionError}
+            />
+          </div>
+        </div>
+      );
+    });
 
-        browserHistory.push(`/polls/poll/${newPollKey}`);
-    }
+    return (
+      <div className="row">
+        <div className="col-sm-4 text-center m-auto">
+          <Helmet title="Buat Polling" />
 
-    handleAddOption() {
-        let options = this.state.options;
-        options.push({ option: '', optionError: '' });
+          <Paper
+            style={{
+              borderRadius: "8px",
+              padding: "20px",
+            }}
+          >
+            <h4 className="card-title text-center mb-4 mt-1">
+              Buat Polling baru
+            </h4>
+            <hr />
 
-        this.setState({ options }); //es6 shorthand for { options: options }
-    }
-
-    render() {
-
-        let options = this.state.options.map((option, i) => {
-            return (
-                <div key={i}>
-                    <br />
+            <div className="d-flex justify-content-center form_container">
+              <form onSubmit={this.handleSubmit}>
+                <div className="input-group">
+                  <div className="input-group-append">
                     <TextField
-                        floatingLabelText={`Option ${i + 1}`}
-                        value={this.state.options[i].option}
-                        onChange={this.handleOptionChange.bind(this, i)}
-                        errorText={this.state.options[i].optionError}
-                        />
+                      floatingLabelText="Judul Polling"
+                      value={this.state.title}
+                      onChange={this.handleTitleChange}
+                      errorText={this.state.titleError}
+                    />
+                  </div>
                 </div>
-            );
-        });
 
-        return (
-            <div className="row">
-                <div className="col-sm-12 text-xs-center">
+                {options}
 
-                    <Helmet title="New Poll" />
+                <div className="d-flex justify-content-center mt-3 login_container">
+                  <span className="ml-1 mr-1">
+                    <FlatButton
+                      label="Tambah Pilihan"
+                      onClick={this.handleAddOption}
+                      primary={true}
+                    />
+                  </span>
 
-                    <Paper>
-                        <br /><br />
-                        <h2>New Poll</h2>
-
-                        <form onSubmit={this.handleSubmit}>
-
-                            <TextField
-                                floatingLabelText="Title"
-                                value={this.state.title}
-                                onChange={this.handleTitleChange}
-                                errorText={this.state.titleError}
-                                />
-
-                            {options}
-
-                            <br />
-                            <FloatingActionButton
-                                mini={true}
-                                secondary={true}
-                                onTouchTap={this.handleAddOption} >
-                                <ContentAdd />
-                            </FloatingActionButton>
-
-                            <br /><br />
-                            <RaisedButton
-                                label="Create"
-                                type="submit"
-                                primary={true}
-                                />
-                        </form>
-
-                        <br /><br />
-                    </Paper>
+                  <span className="ml-1 mr-1">
+                    <RaisedButton
+                      label="Buat Polling"
+                      type="submit"
+                      primary={true}
+                    />
+                  </span>
                 </div>
+              </form>
             </div>
-        );
+          </Paper>
+        </div>
+      </div>
+    );
+  }
+
+  componentWillUnmount() {}
+
+  //firebase keys must be non-empty strings and can't contain ".", "#", "$", "/", "[", or "]"
+  //option must not be named "title", TODO: better data structure in firebase
+  //options must be different, firebase removes dups keys automatically
+  //more robust validation is done firebase-side
+  formIsInvalid() {
+    let isInvalid = false;
+    const regex = /[\.#\$\/\[\]]/;
+    const title = this.state.title.trim();
+
+    if (title.length === 0) {
+      this.setState({ titleError: "Judul Polling tidak boleh kosong." });
+      isInvalid = true;
+    } else if (title.match(regex)) {
+      this.setState({
+        titleError: `Judul Polling tidak boleh berisi karakter ".", "#", "$", "/", "[", or "]"`,
+      });
+      isInvalid = true;
+    } else {
+      this.setState({ title: title, titleError: "" });
     }
 
-    componentWillUnmount() {
+    this.state.options.forEach((o, i) => {
+      let options = this.state.options;
+      let thisOption = o.option.trim();
 
-    }
-
-    //firebase keys must be non-empty strings and can't contain ".", "#", "$", "/", "[", or "]"
-    //option must not be named "title", TODO: better data structure in firebase
-    //options must be different, firebase removes dups keys automatically
-    //more robust validation is done firebase-side
-    formIsInvalid() {
-
-        let isInvalid = false;
-        const regex = /[\.#\$\/\[\]]/;
-        const title = this.state.title.trim();
-
-        if (title.length === 0) {
-            this.setState({ titleError: 'Title must no be empty.' })
-            isInvalid = true;
-        } else if (title.match(regex)) {
-            this.setState({ titleError: `Title can't contain ".", "#", "$", "/", "[", or "]"` })
-            isInvalid = true;
-        } else {
-            this.setState({ title: title, titleError: '' })
+      if (thisOption.length === 0) {
+        options[i] = {
+          option: thisOption,
+          optionError: "Pilihan Polling tidak boleh kosong.",
+        };
+        this.setState({ options: options });
+        isInvalid = true;
+      } else if (thisOption.match(regex)) {
+        options[i] = {
+          option: thisOption,
+          optionError: `Pilihan Polling tidak boleh terdiri dari ".", "#", "$", "/", "[", or "]"`,
+        };
+        this.setState({ options: options });
+        isInvalid = true;
+      } else {
+        if (thisOption === "judul") {
+          //can't have option with key "title"
+          thisOption = "Judul Polling";
         }
 
-        this.state.options.forEach((o, i) => {
+        options[i] = { option: thisOption, optionError: "" };
+        this.setState({ options: options });
+      }
+    });
 
-            let options = this.state.options;
-            let thisOption = o.option.trim();
-
-            if (thisOption.length === 0) {
-                options[i] = { option: thisOption, optionError: 'This option must not be empty.' }
-                this.setState({ options: options });
-                isInvalid = true;
-            } else if (thisOption.match(regex)) {
-                options[i] = { option: thisOption, optionError: `Options can't contain ".", "#", "$", "/", "[", or "]"` }
-                this.setState({ options: options });
-                isInvalid = true;
-            } else {
-
-                if (thisOption === 'title') { //can't have option with key "title"
-                    thisOption = 'Title';
-                }
-
-                options[i] = { option: thisOption, optionError: '' }
-                this.setState({ options: options });
-            }
-        });
-
-        return isInvalid;
-    }
+    return isInvalid;
+  }
 }
 
 export default New;

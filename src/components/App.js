@@ -4,15 +4,10 @@ import { firebaseApp } from "../utils/firebase";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FlatButton from "material-ui/FlatButton";
-import FontIcon from "material-ui/FontIcon";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 
 const muiTheme = getMuiTheme({
-  fontFamily: "Roboto, sans-serif",
-  palette: {
-    primary1Color: "#DC3912",
-    accent1Color: "#FF9900",
-  },
+  fontFamily: "'Google Sans', Quicsand, Lato, Roboto, 'Segoe UI', sans-serif",
 });
 
 class App extends React.Component {
@@ -50,64 +45,57 @@ class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div className="containers">
+        <div className="container">
           <div className="row">
-            <div className="col-sm-6 text-xs-left">
-              <br />
-              {this.state.loggedIn ? (
-                <Link to="/polls/dashboard">
-                  <FlatButton label="My Polls" primary={true} />
-                </Link>
-              ) : (
-                ""
-              )}
-            </div>
+            <div className="col-sm-12 text-right">
+              <div className="m-2">
+                <span>
+                  {this.state.loggedIn ? (
+                    <Link to="/polls/dashboard">
+                      <FlatButton label="Polling Saya" primary={true} />
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+                </span>
 
-            <div className="col-sm-6 text-xs-right">
-              <br />
-              {this.state.loggedIn ? (
-                <FlatButton
-                  onClick={this.handleLogout}
-                  label="Logout"
-                  secondary={true}
-                />
-              ) : (
-                ""
-              )}
+                <span>
+                  {this.state.loggedIn ? (
+                    <FlatButton
+                      onClick={this.handleLogout}
+                      label="Keluar"
+                      secondary={true}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </span>
+              </div>
             </div>
           </div>
 
           <div className="row">
-            <div className="col-sm-12 text-xs-center">
-              <a
-                style={{
-                  fontFamily: "Monoton",
-                  fontSize: "60px",
-                  textShadow: "2px 2px #ccc",
-                  color: "#DC3912",
-                  textDecoration: "none",
-                }}
-                href={this.state.loggedIn ? "/polls/dashboard" : "/polls/"}
-              >
-                Poolster
-              </a>
-              <br />
-              <br />
+            <div className="col-sm-12 text-center mb-5 mt-5">
+              <h2>
+                <a
+                  style={{
+                    color: "#000",
+                    textDecoration: "none",
+                  }}
+                  href={this.state.loggedIn ? "/polls/dashboard" : "/polls/"}
+                >
+                  EL Creative Academy Polls
+                </a>
+              </h2>
             </div>
           </div>
 
           {this.props.children}
 
           <div className="row">
-            <div className="col-sm-12 text-xs-center">
-              <br />
-              <a href="https://github.com/elhakimyasya">
-                <FlatButton
-                  label="Source Code"
-                  icon={<FontIcon className="fa fa-github" />}
-                />
-              </a>
-            </div>
+            <div className="col-sm-12 text-center mt-5 mb-5" style={{fontSize: ".9em"}}>
+                © 2020 EL Creative Developers - <a href="https://www.elcreativeacademy.com/">EL Creative Academy</a> | <a href="https://github.com/elhakimyasya"> Yasya El Hakim</a>
+              </div>
           </div>
         </div>
       </MuiThemeProvider>

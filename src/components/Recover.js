@@ -1,18 +1,18 @@
-import React from 'react';
-import { firebaseApp } from '../utils/firebase';
+import React from "react";
+import { firebaseApp } from "../utils/firebase";
 import Helmet from "react-helmet";
 
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
+import Paper from "material-ui/Paper";
 
 class Recover extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      emailError: '',
-      currentStep: 1
+      email: "",
+      emailError: "",
+      currentStep: 1,
     };
 
     this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
@@ -27,55 +27,67 @@ class Recover extends React.Component {
     e.preventDefault();
     const email = this.state.email.trim();
 
-    firebaseApp.auth().sendPasswordResetEmail(email).then(() => {
-      this.setState({ currentStep: 2 });
-    }).catch((error) => {
-      this.setState({ emailError: error.message });
-      //console.log(error);
-    });
+    firebaseApp
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        this.setState({ currentStep: 2 });
+      })
+      .catch((error) => {
+        this.setState({ emailError: error.message });
+        //console.log(error);
+      });
   }
 
   render() {
-
     let step = (
-      <form onSubmit={this.handleEmailSubmit}>
+      <div className="d-flex justify-content-center form_container">
+        <form onSubmit={this.handleEmailSubmit}>
+          <h4 className="card-title text-center mb-4 mt-1">Lupa Password</h4>
+          <hr />
 
-        <h2>We'll send you an email to reset your password.</h2>
+          <div className="input-group">
+            <div className="input-group-append">
+              <TextField
+                floatingLabelText="Email"
+                value={this.state.email}
+                onChange={this.handleEmailChange}
+                errorText={this.state.emailError}
+              />
+            </div>
+          </div>
 
-        <TextField
-          floatingLabelText="Email"
-          value={this.state.email}
-          onChange={this.handleEmailChange}
-          errorText={this.state.emailError}
-          />
-
-        <br /><br />
-        <RaisedButton
-          label="Send Verification Email"
-          type="submit"
-          primary={true}
-          />
-
-      </form>
+          <div className="d-flex justify-content-center mt-3 login_container">
+            <RaisedButton
+              label="Kirim Verifikasi Email"
+              type="submit"
+              primary={true}
+            />
+          </div>
+        </form>
+      </div>
     );
 
     if (this.state.currentStep === 2) {
-
       step = (
-        <h2>Done! Follow the link in the email to change your password.</h2>
+        <h5 className="card-title text-center mb-4 mt-1">
+          Email Verifikasi berhasil dikirim
+        </h5>
       );
     }
 
     return (
       <div className="row">
-        <div className="col-sm-12 text-xs-center">
+        <div className="col-sm-4 text-center m-auto">
+          <Helmet title="Lupa Password" />
 
-          <Helmet title="Reset yout password" />
-
-          <Paper>
-            <br /><br />
+          <Paper
+            style={{
+              borderRadius: "8px",
+              padding: "20px",
+            }}
+          >
             {step}
-            <br /><br />
           </Paper>
         </div>
       </div>
@@ -83,6 +95,4 @@ class Recover extends React.Component {
   }
 }
 
-
 export default Recover;
-

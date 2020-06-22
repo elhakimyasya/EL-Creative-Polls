@@ -1,20 +1,16 @@
-import React from 'react';
+import React from "react";
 import Helmet from "react-helmet";
 
-import Paper from 'material-ui/Paper';
+const NotFound = () => (
+  <div className="row">
+    <div className="col-sm-12 text-center">
+      <Helmet title="404" />
 
-const NotFound = () =>
-    <div className="row">
-        <div className="col-sm-12 text-xs-center">
-
-            <Helmet title="Page not found" />
-
-            <Paper>
-                <br /><br />
-                <h2>Page not found</h2>
-                <br /><br />
-            </Paper>
-        </div>
+      <h4 className="card-title text-center mb-4 mt-1">
+        <h2>Oops! Halaman Tidak Ditemukan</h2>
+      </h4>
     </div>
+  </div>
+);
 
 export default NotFound;
