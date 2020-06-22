@@ -15,6 +15,6 @@ React real-time voting app with Firebase backend.
 
 ## Demo
 
-https://sebnun.github.io/polls/
+https://elhakimyasya.github.io/polls
 
 username: `a@a.com` password: `123456`
