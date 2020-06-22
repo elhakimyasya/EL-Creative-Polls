@@ -8,7 +8,7 @@ import FontIcon from 'material-ui/FontIcon';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const muiTheme = getMuiTheme({
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: '"Google Sans", Roboto, sans-serif',
     palette: {
         primary1Color: '#DC3912',
         accent1Color: '#FF9900'
