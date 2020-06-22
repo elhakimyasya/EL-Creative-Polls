@@ -77,38 +77,7 @@ class App extends React.Component {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-sm-12 text-xs-center">
-              <a
-                style={{
-                  fontFamily: "Monoton",
-                  fontSize: "60px",
-                  textShadow: "2px 2px #ccc",
-                  color: "#DC3912",
-                  textDecoration: "none",
-                }}
-                href={this.state.loggedIn ? "/polls/dashboard" : "/polls/"}
-              >
-                Poolster
-              </a>
-              <br />
-              <br />
-            </div>
-          </div>
-
           {this.props.children}
-
-          <div className="row">
-            <div className="col-sm-12 text-xs-center">
-              <br />
-              <a href="https://github.com/elhakimyasya">
-                <FlatButton
-                  label="Source Code"
-                  icon={<FontIcon className="fa fa-github" />}
-                />
-              </a>
-            </div>
-          </div>
         </div>
       </MuiThemeProvider>
     );

@@ -4,9 +4,6 @@ import { Link, browserHistory } from "react-router";
 import Helmet from "react-helmet";
 
 import RaisedButton from "material-ui/RaisedButton";
-import FlatButton from "material-ui/FlatButton";
-import TextField from "material-ui/TextField";
-import Paper from "material-ui/Paper";
 
 class Login extends React.Component {
   constructor(props) {
@@ -56,45 +53,126 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-sm-12 text-xs-center">
-          <Helmet title="Login" />
+      <div className="H2SoFe LZgQXe TFhTPc">
+        <div className="RAYh1e LZgQXe qmmlRd">
+          <div className="xkfVF">
+            <div className="Aa1VU">
+              <div className="Lth2jb">
+                <div className="v8vQje">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M3,22V8H7V22H3M10,22V2H14V22H10M17,22V14H21V22H17Z" />
+                  </svg>
+                </div>
+              </div>
 
-          <Paper>
+              <div className="JhUD8d SQNfcc vLGJgb">
+                <div className="zWl5kd">
+                  <div className="DRS7Fe bxPAYd k6Zj8d">
+                    <div className="jXeDnc">
+                      <h1 className="ahT6S">
+                        <span>EL Creative Academy Polls</span>
+                      </h1>
+                      <div className="Y4dIwd">
+                        <span>
+                          Silahkan Masuk dengan Email, Google, atau Facebook.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-            <h2>Login</h2>
+              <div className="pwWryf bxPAYd" role="presentation">
+                <div className="Wxwduf Us7fWe JhUD8d" role="presentation">
+                  <Helmet title="Login" />
+                  <form className="WEQkZc" onSubmit={this.handleSubmit}>
+                    <div className="bCAAsb">
+                      <section className="aTzEhb">
+                        <div className="CxRgyd">
+                          <div className="d2CFce cDSmF" role="presentation">
+                            <div className="rFrNMe N3Hzgf jjwyfe vHVGub zKHdkd sdJrJc Tyc9J">
+                              <div className="aCsJod oJeWuf">
+                                <div className="aXBtI Wic03c">
+                                  <div className="Xb9hP">
+                                    <input
+                                      type="email"
+                                      className="whsOnd zHQkBf"
+                                      tabindex="0"
+                                      aria-label="Email"
+                                      value={this.state.email}
+                                      onChange={this.handleEmailChange}
+                                      errorText={this.state.emailError}
+                                    />
+                                    <div
+                                      className="AxOyFc snByac"
+                                      aria-hidden="true"
+                                    >
+                                      Alamat Email
+                                    </div>
+                                  </div>
 
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                floatingLabelText="Email"
-                value={this.state.email}
-                onChange={this.handleEmailChange}
-                errorText={this.state.emailError}
-              />
+                                  <div className="i9lrp mIZh1c"></div>
+                                  <div className="OabDMe cXrdqd Y2Zypf"></div>
+                                </div>
+                              </div>
+                            </div>
 
-              <br />
-              <br />
-              <TextField
-                floatingLabelText="Password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-                type="password"
-                errorText={this.state.passwordError}
-              />
+                            <div className="rFrNMe N3Hzgf jjwyfe vHVGub zKHdkd sdJrJc Tyc9J">
+                              <div className="aCsJod oJeWuf">
+                                <div className="aXBtI Wic03c">
+                                  <div className="Xb9hP">
+                                    <input
+                                      type="password"
+                                      className="whsOnd zHQkBf"
+                                      tabindex="0"
+                                      aria-label="Password"
+                                      value={this.state.password}
+                                      onChange={this.handlePasswordChange}
+                                      errorText={this.state.passwordError}
+                                    />
+                                    <div
+                                      className="AxOyFc snByac"
+                                      aria-hidden="true"
+                                    >
+                                      Password
+                                    </div>
 
-              <br />
-              <br />
-              <RaisedButton label="Login" type="submit" primary={true} />
-            </form>
+                                    <div className="i9lrp mIZh1c"></div>
+                                    <div className="OabDMe cXrdqd Y2Zypf"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
 
-            <br />
-            <Link to="/polls/recover">
-              <FlatButton label="Forgot your password?" />
-            </Link>
+                      <div className="vwtvsf">
+                        Masuk dengan <a href="#">Google</a> atau{" "}
+                        <a href="#">Facebook</a>.<br /> <br />
+                        <div className="PrDSKc">
+                          Lupa Password?{" "}
+                          <a href="/polls/recover">Reset Password</a>. <br />{" "}
+                          Belum punya akun?{" "}
+                          <a href="/polls/signup">Buat Akun</a>.
+                        </div>
+                      </div>
+                    </div>
 
-            <br />
-            <br />
-          </Paper>
+                    <div className="zQJV3">
+                      <div className="dG5hZc">
+                        <div className="qhFLie">
+                          <div className="FliLIb DL0QTb">
+                            <RaisedButton label="Masuk" type="submit" primary={true} tabindex="0"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
