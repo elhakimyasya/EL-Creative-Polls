@@ -2,10 +2,10 @@ import React from "react";
 import { Link, browserHistory } from "react-router";
 import { firebaseApp } from "../utils/firebase";
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import FlatButton from "material-ui/FlatButton";
+import FontIcon from "material-ui/FontIcon";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
 
 const muiTheme = getMuiTheme({
   fontFamily: "Roboto, sans-serif",
