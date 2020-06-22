@@ -32548,7 +32548,7 @@
                     }, l.default.createElement("div", {
                         className: "col-sm-12 text-xs-center"
                     }, l.default.createElement("br", null), l.default.createElement("a", {
-                        href: "https://github.com/sebnun/polls"
+                        href: "https://github.com/elhakimyasya"
                     }, l.default.createElement(v.default, {
                         label: "Source Code",
                         icon: l.default.createElement(m.default, {
