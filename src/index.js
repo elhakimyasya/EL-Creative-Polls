@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import App from './components/App';
 import Home from './components/Home';
@@ -18,7 +17,6 @@ import './index.css';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
 
 //A note on security: users can access data as explained in the use cases, but they can not modify data beyond that
 //All client-based code can be tampered with, so this app relies on server-side validation of data on the firebase side
