@@ -91,7 +91,7 @@ class App extends React.Component {
                     <div className="row">
                         <div className="col-sm-12 text-xs-center">
                             <br />
-                            <a href="https://github.com/sebnun/polls">
+                            <a href="https://github.com/elhakimyasya">
                                 <FlatButton
                                     label="Source Code"
                                     icon={<FontIcon className="fa fa-github" />}
