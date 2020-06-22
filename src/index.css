@@ -1,0 +1,16 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #FCFCFC;
+}
+
+h2{
+  /*font-style: italic;*/
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.buttonWidth {
+  width: 250px;
+}
+
+
