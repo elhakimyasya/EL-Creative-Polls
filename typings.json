@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "react-helmet": "registry:dt/react-helmet#0.0.0+20160816111147"
+  }
+}
