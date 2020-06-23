@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
 
         const uid = user.uid;
 
-        this.userPollsRef = firebaseApp.database().ref(`user-polls/${uid}`);
+        this.userPollsRef = firebaseApp.database().ref(`Polling-User/${uid}`);
 
         //check if user has no polls to quit loading indicator
         this.userPollsRef.once("value").then((snapshot) => {
@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
 
             firebaseApp
               .database()
-              .ref(`polls/${pollId}/title`)
+              .ref(`EL-Creative-Polls/${pollId}/title`)
               .once("value")
               .then((snapshot) => {
                 const title = snapshot.val();
@@ -111,7 +111,7 @@ class Dashboard extends React.Component {
     const updates = {};
     updates[`/EL-Creative-Polls/${this.poll2Delete}`] = null;
     updates[
-      `/user-polls/${firebaseApp.auth().currentUser.uid}/${this.poll2Delete}`
+      `/Polling-User/${firebaseApp.auth().currentUser.uid}/${this.poll2Delete}`
     ] = null;
 
     firebaseApp.database().ref().update(updates);

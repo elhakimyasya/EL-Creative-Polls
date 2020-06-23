@@ -69,7 +69,7 @@ class New extends React.Component {
     // Write the new poll's data simultaneously in the polls list and the user's polls list.
     var updates = {};
     updates[`/EL-Creative-Polls/${newPollKey}`] = pollData;
-    updates[`/user-polls/${uid}/${newPollKey}`] = true;
+    updates[`/Polling-User/${uid}/${newPollKey}`] = true;
 
     firebaseApp.database().ref().update(updates);
 

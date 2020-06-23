@@ -1,16 +1,16 @@
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Google Sans', Quicksand, Lato, Roboto, 'Segoe UI', sans-serif;
   background-color: #FCFCFC;
 }
 
-h2{
+h1, h2, h3, h4, h5 {
   /*font-style: italic;*/
+  
   padding-left: 20px;
   padding-right: 20px;
 }
 
-.buttonWidth {
-  width: 250px;
+.input-group {
+  align-items: center;
+  justify-content: center;
 }
-
-

@@ -5,6 +5,7 @@ import Helmet from "react-helmet";
 
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+
 import Paper from "material-ui/Paper";
 import Loading from "./Loading";
 import { FlatButton } from "material-ui";
@@ -28,13 +29,13 @@ class Update extends React.Component {
   componentWillMount() {
     this.pollRef = firebaseApp
       .database()
-      .ref(`polls/${this.props.params.pollId}`);
+      .ref(`EL-Creative-Polls/${this.props.params.pollId}`);
     this.pollRef
       .on("value", (snapshot) => {
         const dbPoll = snapshot.val();
 
         const options = Object.keys(dbPoll).reduce((a, key) => {
-          if (key !== "title") {
+          if (key !== "judul") {
             a.push({ option: [key], optionError: "" }); //[key]is es6 computed property name
           }
           return a;
@@ -81,7 +82,7 @@ class Update extends React.Component {
     const updates = {};
 
     newOptionsArray.forEach((option) => {
-      updates[`polls/${this.props.params.pollId}/${option}`] = 0;
+      updates[`EL-Creative-Polls/${this.props.params.pollId}/${option}`] = 0;
     });
 
     firebaseApp.database().ref().update(updates);

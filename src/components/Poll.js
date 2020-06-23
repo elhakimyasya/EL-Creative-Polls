@@ -25,7 +25,7 @@ class Poll extends React.Component {
   componentWillMount() {
     this.pollRef = firebaseApp
       .database()
-      .ref(`polls/${this.props.params.pollId}`);
+      .ref(`EL-Creative-Polls/${this.props.params.pollId}`);
     this.pollRef
       .on("value", (snapshot) => {
         const dbPoll = snapshot.val();
@@ -59,7 +59,7 @@ class Poll extends React.Component {
       .database()
       .ref()
       .update({
-        [`polls/${this.props.params.pollId}/${option}`]: (currentCount += 1),
+        [`EL-Creative-Polls/${this.props.params.pollId}/${option}`]: (currentCount += 1),
       });
     localStorage.setItem(this.props.params.pollId, "true");
     this.setState({ voted: true, showSnackbar: true });
