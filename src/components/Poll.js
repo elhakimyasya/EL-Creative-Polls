@@ -113,7 +113,7 @@ class Poll extends React.Component {
 
           <Snackbar
             open={this.state.showSnackbar}
-            message="Thanks for your vote!"
+            message="Terimakasih atas Polling anda!"
             autoHideDuration={4000}
           />
 

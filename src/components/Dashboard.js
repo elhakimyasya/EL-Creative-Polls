@@ -167,7 +167,7 @@ class Dashboard extends React.Component {
               open={this.state.dialogOpen}
               onRequestClose={this.handleClose}
             >
-              Apakah anda ingin menghapus Polling "{this.poll2DeleteTitle}"?
+              Apakah anda yakin untuk menghapus Polling ini?
             </Dialog>
 
             <Link to="/polls/new">
