@@ -40,7 +40,7 @@ class Signup extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
-        browserHistory.push("/polls/dashboard");
+        browserHistory.push("/EL-Creative-Polls/dashboard");
       })
       .catch((error) => {
         if (error.code === "auth/weak-password") {

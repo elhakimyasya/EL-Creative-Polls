@@ -23,16 +23,16 @@ import './index.css';
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path='/polls/' component={App}> 
+    <Route path='/EL-Creative-Polls/' component={App}> 
       <IndexRoute component={Home} />
-      <Route path="/polls/dashboard" component={Dashboard} /> 
-      <Route path="/polls/signup" component={Signup} />
-      <Route path="/polls/login" component={Login} />
-      <Route path="/polls/recover" component={Recover} />
-      <Route path="/polls/new" component={New} />
-      <Route path="/polls/update/:pollId" component={Update} />
-      <Route path="/polls/poll/:pollId" component={Poll} />
-      <Route path="/polls/*" component={NotFound} />
+      <Route path="/EL-Creative-Polls/dashboard" component={Dashboard} /> 
+      <Route path="/EL-Creative-Polls/signup" component={Signup} />
+      <Route path="/EL-Creative-Polls/login" component={Login} />
+      <Route path="/EL-Creative-Polls/recover" component={Recover} />
+      <Route path="/EL-Creative-Polls/new" component={New} />
+      <Route path="/EL-Creative-Polls/update/:pollId" component={Update} />
+      <Route path="/EL-Creative-Polls/poll/:pollId" component={Poll} />
+      <Route path="/EL-Creative-Polls/*" component={NotFound} />
     </Route>
   </Router>,
   document.getElementById('root')

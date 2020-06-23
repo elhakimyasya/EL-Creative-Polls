@@ -34,7 +34,7 @@ class App extends React.Component {
       .then(
         () => {
           //console.log("sign out succesful");
-          browserHistory.push("/polls/");
+          browserHistory.push("/EL-Creative-Polls/");
         },
         (error) => {
           console.log(error);
@@ -51,7 +51,7 @@ class App extends React.Component {
               <div className="m-2">
                 <span>
                   {this.state.loggedIn ? (
-                    <Link to="/polls/dashboard">
+                    <Link to="/EL-Creative-Polls/dashboard">
                       <FlatButton label="Polling Saya" primary={true} />
                     </Link>
                   ) : (
@@ -82,7 +82,7 @@ class App extends React.Component {
                     color: "#000",
                     textDecoration: "none",
                   }}
-                  href={this.state.loggedIn ? "/polls/dashboard" : "/polls/"}
+                  href={this.state.loggedIn ? "/EL-Creative-Polls/dashboard" : "/EL-Creative-Polls/"}
                 >
                   EL Creative Academy Polls
                 </a>

@@ -109,7 +109,7 @@ class Dashboard extends React.Component {
   handleDelete() {
     // updating to null deletes
     const updates = {};
-    updates[`/polls/${this.poll2Delete}`] = null;
+    updates[`/EL-Creative-Polls/${this.poll2Delete}`] = null;
     updates[
       `/user-polls/${firebaseApp.auth().currentUser.uid}/${this.poll2Delete}`
     ] = null;
@@ -135,7 +135,7 @@ class Dashboard extends React.Component {
             tooltip={<span>Hapus</span>}
             onClick={() => this.handleOpen(poll.id)}
           />
-          <Link to={`/polls/poll/${poll.id}`}>
+          <Link to={`/EL-Creative-Polls/poll/${poll.id}`}>
             <FlatButton
               label={poll.title}
               style={{ textAlign: "left", width: "80%" }}
@@ -170,7 +170,7 @@ class Dashboard extends React.Component {
               Apakah anda yakin untuk menghapus Polling ini?
             </Dialog>
 
-            <Link to="/polls/new">
+            <Link to="/EL-Creative-Polls/new">
               <RaisedButton label="Buat Polling Baru" primary={true} />
             </Link>
 

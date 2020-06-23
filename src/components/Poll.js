@@ -79,7 +79,7 @@ class Poll extends React.Component {
     if (isAuthUser) {
       addOptionUI = (
         <div>
-          <a href={`/polls/update/${this.props.params.pollId}`}>
+          <a href={`/EL-Creative-Polls/update/${this.props.params.pollId}`}>
             <RaisedButton
               mini={true}
               secondary={true}

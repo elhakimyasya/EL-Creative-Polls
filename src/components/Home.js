@@ -17,7 +17,7 @@ class Home extends React.Component {
       .signInWithPopup(provider)
       .then((result) => {
         //console.log('Facebook login success');
-        browserHistory.push("/polls/dashboard");
+        browserHistory.push("/EL-Creative-Polls/dashboard");
       })
       .catch((error) => {
         console.log(error);
@@ -32,7 +32,7 @@ class Home extends React.Component {
       .signInWithPopup(provider)
       .then((result) => {
         //console.log('Google login success');
-        browserHistory.push("/polls/dashboard");
+        browserHistory.push("/EL-Creative-Polls/dashboard");
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +67,7 @@ class Home extends React.Component {
               />
               {/* <Link >
                 <FlatButton
-                onClick="/polls/login"
+                onClick="/EL-Creative-Polls/login"
                   secondary={true}
                   icon={<FontIcon className="fa fa-envelope-o" />}
                 />
@@ -77,7 +77,7 @@ class Home extends React.Component {
             <div className="mt-4">
               <div className="d-flex justify-content-center links">
                 Belum punya Akun?{" "}
-                <Link to="/polls/signup" className="ml-2">
+                <Link to="/EL-Creative-Polls/signup" className="ml-2">
                   Daftar Sekarang
                 </Link>
               </div>

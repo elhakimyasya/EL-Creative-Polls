@@ -40,7 +40,7 @@ class Login extends React.Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
-        browserHistory.push("/polls/dashboard");
+        browserHistory.push("/EL-Creative-Polls/dashboard");
       })
       .catch((error) => {
         if (error.code === "auth/wrong-password") {
@@ -101,12 +101,12 @@ class Login extends React.Component {
             <div className="mt-4">
               <div className="d-flex justify-content-center links">
                 Belum punya Akun?{" "}
-                <Link to="/polls/signup" className="ml-2">
+                <Link to="/EL-Creative-Polls/signup" className="ml-2">
                   Daftar
                 </Link>
               </div>
               <div className="d-flex justify-content-center links">
-                <Link to="/polls/recover" className="ml-2">
+                <Link to="/EL-Creative-Polls/recover" className="ml-2">
                   Lupa Password
                 </Link>
               </div>
