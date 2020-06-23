@@ -5,8 +5,6 @@ import Helmet from "react-helmet";
 
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentAdd from "material-ui/svg-icons/content/add";
 import Paper from "material-ui/Paper";
 import Loading from "./Loading";
 import { FlatButton } from "material-ui";
